@@ -1,31 +1,37 @@
-
+import React from "react";
 import { Menu } from "../../../components/edicao/Menu";
 import { useRouter } from 'next/router'
 import { BarCentral } from "../../../components/commons/BarCentral";
+import { Programa } from "../../../components/edicao/Programa"
+import useSWR from 'swr';
 
-export default function Separador({edicao}) {
+export default function Separador() {
+
     const router = useRouter();
-    console.log(router)
-    return(
-        <main>
-        <div>{edicao[0].title.rendered}</div>
+    const fetcher = 
+    (...args) => fetch(...args).then((res) => res.json())
+    const { API_URL } = process.env;
+    const url = `${API_URL}/cpt_edicoes?slug=${router.query.slug}`
+    const { data, error } = useSWR(url, fetcher)
+    if (error) return <div>failed to load</div>
+    if (!data) return (<main>
+        <div>{router.query.slug}</div>
         <Menu />
         <BarCentral />
-        <div>{router.query.separador}</div>
+        <div>Loading...</div>
+    </main>)
+
+    let edicao = data[0];
+
+    return (
+        <main>
+            <div>{edicao.title.rendered}</div>
+            <Menu />
+            <BarCentral />
+            { router.query.separador == 'programa' ? <Programa sessoes={edicao.acf.sessao_repetidor} /> :     <div>yeahh</div>}
         </main>
     )
 }
 
-export async function getServerSideProps({params}) {
-    const { API_URL } = process.env;
-    const response = await fetch(`${API_URL}/cpt_edicoes?slug=${params.slug}`);
-    const data = await response.json();
-    const edicao = await data;
-    return {
-      props: {
-        edicao,
-      }
-    }
-  }
-  
+
 
