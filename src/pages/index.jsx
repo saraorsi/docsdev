@@ -1,16 +1,26 @@
 import { Centralbar } from '../components/Centralbar'
+import Link from 'next/link'
+
 
 export default function Home({ edicoes }) {
   return (
-   <main>
+    <main>
       <div>Edicoes</div>
       <div>
-        {edicoes.map( edicao => <div dangerouslySetInnerHTML={{ __html: edicao.title.rendered }}></div>)
+        {edicoes.map(edicao => {
+          return (
+            <div>
+              <Link href={`/edicao/${edicao.slug}`}>
+                <a dangerouslySetInnerHTML={{ __html: edicao.title.rendered }}></a>
+              </Link>
+            </div>
+          )
+        })
         }
       </div>
       <Centralbar />
       <div>Destaques</div>
-   </main>
+    </main>
   )
 }
 
@@ -23,9 +33,8 @@ export async function getStaticProps() {
   return {
     props: {
       edicoes,
-
     },
-    revalidate: 1
+    revalidate: 10
   }
 }
 
