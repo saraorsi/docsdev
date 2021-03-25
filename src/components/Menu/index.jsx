@@ -1,5 +1,11 @@
+import Link from "next/link"
+
 export function Menu() {
     return(
-        <h1>Menu</h1>
+        <h1>
+            <Link href={'/'}>
+            Menu
+            </Link>
+        </h1>
     )
 }
