@@ -6,7 +6,7 @@ import { Programa } from "../../../components/edicao/Programa";
 export default function Edicao({edicao}) {
     return(
         <main>
-        <div>{edicao[0].title.rendered}</div>
+        <div>{edicao[0]?.title?.rendered}</div>
         <Menu />
         <BarCentral />
         <Programa />

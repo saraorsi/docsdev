@@ -2,7 +2,7 @@ export function Programa( {sessoes} ) {
 
     return(
         <>
-        {sessoes.map( sessao => {
+        {sessoes && sessoes.map( sessao => {
             return(
                 <div key={sessao.numero}>
                 <div>{sessao.dia}</div>
