@@ -1,5 +1,6 @@
-import { Centralbar } from '../components/Centralbar'
+
 import Link from 'next/link'
+import { BarCentral } from '../components/commons/BarCentral';
 
 
 export default function Home({ edicoes }) {
@@ -18,7 +19,7 @@ export default function Home({ edicoes }) {
         })
         }
       </div>
-      <Centralbar />
+      <BarCentral />
       <div>Destaques</div>
     </main>
   )

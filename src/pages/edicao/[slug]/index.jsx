@@ -1,14 +1,15 @@
-import { Centralbar } from "../../../components/Centralbar";
-import { EdicaoMenu } from "../../../components/EdicaoMenu";
+import { BarCentral } from "../../../components/commons/BarCentral";
+import { Menu } from "../../../components/edicao/Menu";
+import { Programa } from "../../../components/edicao/Programa";
+
 
 export default function Edicao({edicao}) {
-    console.log(edicao[0])
     return(
         <main>
         <div>{edicao[0].title.rendered}</div>
-        <EdicaoMenu />
-        <Centralbar />
-        <div></div>
+        <Menu />
+        <BarCentral />
+        <Programa />
         </main>
     )
 }

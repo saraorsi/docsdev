@@ -1,13 +1,13 @@
-import { Menu } from '../components/Menu'
-import { Sidebar } from '../components/Sidebar'
+import { BarLeft } from '../components/commons/BarLeft'
+import { BarRight } from '../components/commons/BarRight'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Menu />
+      <BarLeft />
       <Component {...pageProps} />
-      <Sidebar />
+      <BarRight />
     </>
   )
 }

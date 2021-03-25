@@ -1,10 +1,10 @@
 import Link from "next/link"
 
-export function Menu() {
+export function BarLeft() {
     return(
         <h1>
             <Link href={'/'}>
-            Menu
+            BarLeft
             </Link>
         </h1>
     )
