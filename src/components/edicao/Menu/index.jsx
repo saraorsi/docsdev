@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
-export function Menu() {
+export function Menu(props) {
+
+
+    const participantes = props.participantes;
+    participantes ? participantes.sort((a, b) => (a.post_title > b.post_title ? 1 : -1)) : ''
+
+
     const router = useRouter()
     const menus = [
         {
@@ -41,6 +47,15 @@ export function Menu() {
                 </div>
 
             ))}
+            {participantes && participantes.map(participante => (
+                <div key={participante.ID}>
+                <Link href={`/edicao/${router.query.slug}/${participante.post_name}`}>
+                    <a>{participante.post_title}</a>
+                </Link>
+            </div>
+            ))
+
+            }
         </>
     )
 }

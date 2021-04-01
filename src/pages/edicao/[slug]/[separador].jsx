@@ -4,9 +4,11 @@ import { useRouter } from 'next/router'
 import { BarCentral } from "../../../components/commons/BarCentral";
 import { Programa } from "../../../components/edicao/Programa"
 import useSWR from 'swr';
+import { Introducao } from "../../../components/edicao/Introducao";
+import { EdicoesContext } from "../../../EdicoesContext";
+import { Debates } from "../../../components/edicao/Debates";
 
 export default function Separador() {
-
     const router = useRouter();
     const fetcher = 
     (...args) => fetch(...args).then((res) => res.json())
@@ -24,12 +26,18 @@ export default function Separador() {
     let edicao = data[0];
 
     return (
+        <EdicoesContext.Provider value={edicao} >
         <main>
-            <div>{edicao.title.rendered}</div>
+            <div dangerouslySetInnerHTML={{ __html: edicao.title.rendered }}>
+            </div>
             <Menu />
             <BarCentral />
-            { router.query.separador == 'programa' ? <Programa sessoes={edicao.acf.sessao_repetidor} /> :     <div>yeahh</div>}
+            { router.query.separador == 'programa' ? <Programa /> 
+            : router.query.separador == 'introducao' ? <Introducao /> 
+            : router.query.separador == 'debates' ? <Debates /> 
+            : <div>yeahh</div> }
         </main>
+        </ EdicoesContext.Provider>
     )
 }
 

@@ -1,5 +1,10 @@
-export function Programa( {sessoes} ) {
+import { useContext } from "react";
+import { EdicoesContext } from "../../../EdicoesContext";
 
+export function Programa() {
+    const edicao = useContext(EdicoesContext);
+
+    const sessoes = edicao && edicao?.acf?.sessao_repetidor;
     return(
         <>
         {sessoes && sessoes.map( sessao => {
