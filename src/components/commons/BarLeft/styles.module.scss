@@ -1,0 +1,40 @@
+.barLeftContainer{
+    position: fixed;
+    top: 0;
+    background-color: var(--black);
+    width: 6.5vw;
+    height: 100%;
+    color: var(--green);
+    letter-spacing: .02em;
+    .searchButton{
+        margin-top: 1.5rem;
+        text-align: center;
+        img{
+            width: 1.5rem;
+            height: auto;
+        }
+    }
+    .homeButton{
+        position: absolute;
+        bottom: 0rem;
+        left: 0rem;
+        width: 60vh;
+        height: 6.5vw;
+        bottom: -6.5vw;
+        padding-left: 1.5rem;
+        
+
+        -webkit-transform: rotate(-90deg); 
+        -moz-transform: rotate(-90deg); 
+        transform: rotate(-90deg);
+        -webkit-transform-origin: 0 0;
+        -moz-transform-origin: 0 0; 
+        transform-origin: 0 0;
+
+        font-size: 2.5rem;
+        text-transform: uppercase;
+
+        display: flex;
+        align-items: center;
+    }
+}

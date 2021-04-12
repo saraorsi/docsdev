@@ -1,0 +1,18 @@
+.realizadorContainer{
+    padding: 1.5rem;
+    .realizadorTitle{
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .realizadorText{
+        font-family: 'Pathos', sans-serif;
+    }
+    .realizadorFilms{
+        margin-top: 2rem;
+        font-size: 1.25rem;
+        line-height: 1.5em;
+        span{
+            border-bottom: 1px solid var(--black);
+        }
+    }
+}

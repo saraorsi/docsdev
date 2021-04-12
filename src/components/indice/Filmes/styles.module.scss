@@ -1,0 +1,21 @@
+.edicao{
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px dashed var(--black);
+    font-size: 1.5rem;
+    text-align: right;
+}
+
+.filmItem{
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px dashed var(--black);
+    &:hover{
+        background-color: var(--hover-background);
+        cursor: pointer;
+    }
+    .filmTitle{
+        font-size: 2rem;
+    }
+    .filmDirector{
+        font-size: 1.5rem;
+    }
+}

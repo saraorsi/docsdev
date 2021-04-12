@@ -1,0 +1,36 @@
+.sessionDay{
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px dashed var(--black);
+    font-size: 1.5rem;
+    display: block;
+}
+
+.sessionContainer{
+    border-bottom: 1px dashed var(--black);
+    padding: 1.5rem;
+    .sessionInfo{
+        font-size: 1.25rem;
+        text-align: right;
+    }
+    .filmContainer{
+        & + .filmContainer {
+            margin-top: 2rem;
+        }
+        margin-top: 1rem;
+        .filmTitle{
+            font-size: 2rem;
+        }
+        .filmInfo, .filmDirector{
+            font-size: 1.5rem;
+        }
+        .filmText{
+            font-family: 'Pathos';
+            padding-top: 1.25rem;
+        }
+    }
+    .debates{
+        margin-top: 2rem;
+        font-size: 1.25rem;
+    }
+}
+

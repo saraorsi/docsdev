@@ -1,0 +1,35 @@
+.menuItem{
+    padding: 1rem 1.5rem;
+    display: block;
+    border-bottom: 1px dashed var(--black);
+    font-size: 2rem;
+    text-transform: uppercase;
+    &:hover{
+        background-color: var(--hover-background);
+    }
+    &.active{
+        background-color: var(--black);
+        color: var(--green);
+    }
+}
+
+.participantesMenu{
+    text-align: right;
+    font-size: 1.25rem;
+    margin-top: 4rem;
+    .participantesMenuTitulo{
+        padding: .5rem 1.5rem;
+    }
+    .participanteItem{
+        border-bottom: 1px dashed var(--black);
+        padding: .25rem 1.5rem;
+        display: block;
+        &:hover{
+            background-color: var(--hover-background);
+        }
+        &.active{
+            background-color: var(--black);
+            color: var(--green);
+        }
+    }
+}

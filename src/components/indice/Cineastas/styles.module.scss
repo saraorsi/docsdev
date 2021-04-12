@@ -1,0 +1,20 @@
+.cineastaItem{
+    padding: 1rem 1.5rem;
+    border-bottom: 1px dashed var(--black);
+    .cineastaName{
+        font-size: 2rem;
+    }
+    .cineastaEdicoes{
+        margin-top: .5rem;
+        padding-bottom: .25rem;
+        a{
+            border-bottom: 1px solid var(--black);
+            font-size: 1.25rem;
+            line-height: 1.4em;
+            transition: opacity .2s;
+            &:hover{
+                opacity: .7;
+            }
+        }
+    }
+}

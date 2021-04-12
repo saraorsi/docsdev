@@ -1,0 +1,15 @@
+.debateItem{
+    padding: 1rem 1.5rem;
+    border-bottom: 1px dashed var(--black);
+    .debateTitle{
+        font-size: 2rem;
+    }
+    .debateSubtitle{
+        font-size: 1.5rem;
+    }
+    .debateText{
+        font-family: 'Pathos';
+        padding-top: 1.25rem;
+        padding-bottom: .5rem;
+    }
+}

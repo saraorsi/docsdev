@@ -1,0 +1,15 @@
+.menuItem{
+    padding: 1rem 1.5rem;
+    display: block;
+    border-bottom: 1px dashed var(--black);
+    font-size: 2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--hover-background);
+    }
+    &.active{
+        background-color: var(--black);
+        color: var(--green);
+    }
+}

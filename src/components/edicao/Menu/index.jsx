@@ -1,14 +1,24 @@
 import Link from "next/link";
 import { useRouter } from 'next/router';
+import { useContext, useState } from "react";
+import { EdicoesContext } from "../../../contexts/EdicoesContext";
 
-export function Menu(props) {
+import styles from './styles.module.scss';
 
+export function Menu() {
+    const router = useRouter()
 
-    const participantes = props.participantes;
+    const edicao = useContext(EdicoesContext);
+
+    const participantes = edicao && edicao?.acf?.participantes;
     participantes ? participantes.sort((a, b) => (a.post_title > b.post_title ? 1 : -1)) : ''
 
+    const separador = router.query.separador;
+    const [selected, setSelected] = useState(separador)
+    function toggle(menu) {
+      setSelected(menu)
+    }
 
-    const router = useRouter()
     const menus = [
         {
             link: `/edicao/${router.query.slug}/introducao`,
@@ -40,22 +50,24 @@ export function Menu(props) {
     return (
         <>
             {menus.map(menu => (
-                <div key={menu.titulo}>
-                    <Link href={menu.link}>
-                        <a>{menu.titulo}</a>
-                    </Link>
-                </div>
+
+                <Link key={menu.titulo} href={menu.link}>
+                    <a className={`${styles.menuItem} ${ selected === undefined && menu.slug == 'programa' ? styles.active : selected == menu.slug ? styles.active : null}`} onClick={() => toggle(menu.slug)}>
+                        {menu.titulo}
+                    </a>
+                </Link>
+
 
             ))}
-            {participantes && participantes.map(participante => (
-                <div key={participante.ID}>
-                <Link href={`/edicao/${router.query.slug}/${participante.post_name}`}>
-                    <a>{participante.post_title}</a>
-                </Link>
-            </div>
-            ))
-
-            }
+            {participantes && <div className={styles.participantesMenu}>
+                <div className={styles.participantesMenuTitulo}>Com a presença de:</div>
+                {participantes && participantes.map(participante => (
+                    <Link key={participante.ID} href={`/edicao/${router.query.slug}/${participante.post_name}`}>
+                        <a className={`${styles.participanteItem} ${selected == participante.post_name ? styles.active : null}}`} onClick={() => toggle(participante.post_name)}>{participante.post_title}</a>
+                    </Link>
+                ))
+                }
+            </div>}
         </>
     )
 }

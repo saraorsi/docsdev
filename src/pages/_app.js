@@ -1,6 +1,6 @@
 import { BarLeft } from '../components/commons/BarLeft'
 import { BarRight } from '../components/commons/BarRight'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (

@@ -1,17 +1,34 @@
 import { BarCentral } from "../../../components/commons/BarCentral";
 import { Menu } from "../../../components/edicao/Menu";
 import { Programa } from "../../../components/edicao/Programa";
-import { EdicoesContext } from "../../../EdicoesContext";
+import { EdicoesContext } from "../../../contexts/EdicoesContext";
+
+import styles from './Edicao.module.scss';
 
 
 export default function Edicao({ edicao }) {
   return (
-    <EdicoesContext.Provider value={edicao} >
+    <EdicoesContext.Provider value={edicao[0]} >
       <main>
-        <div dangerouslySetInnerHTML={{ __html: edicao[0]?.title?.rendered }}></div>
-        <Menu participantes={edicao[0]?.acf?.participantes} />
+        <div className="leftContainer">
+          <div className="sectionTitle">
+            <div>{edicao[0].acf.ano} <span className={styles.edicaoData}>{edicao[0].acf.datas}</span></div>
+            <div className="sectionTitleCircle"></div>
+          </div>
+          <div className="sectionContent">
+          <Menu/>
+          </div>
+        </div>
         <BarCentral />
-        <Programa sessoes={edicao[0]?.acf?.sessao_repetidor} />
+        <div className="rightContainer">
+          <div className="sectionTitle">
+          <div dangerouslySetInnerHTML={{ __html: edicao[0]?.title?.rendered }}></div>
+          <div className="sectionTitleCircle"></div>
+          </div>
+          <div className="sectionContent">
+          <Programa />
+          </div>
+        </div>
       </main>
     </ EdicoesContext.Provider>
   )
