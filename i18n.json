@@ -1,0 +1,8 @@
+{
+    "locales": ["pt-PT", "en"],
+    "defaultLocale": "pt-PT",
+    "pages" : {
+        "*" : ["common"],
+        "edicao/*" : ["edicao"]
+    }
+}

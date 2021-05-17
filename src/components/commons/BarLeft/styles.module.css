@@ -1,0 +1,81 @@
+.barLeftContainer {
+  position: fixed;
+  top: 0;
+  background-color: var(--black);
+  width: 6.5vw;
+  height: 100%;
+  color: var(--green);
+  letter-spacing: .02em;
+}
+
+@media (max-width: 769px) {
+  .barLeftContainer {
+    font-size: 15px;
+    width: 20vw;
+  }
+}
+
+.barLeftContainer .searchButton {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.barLeftContainer .searchButton img {
+  width: 2rem;
+  height: auto;
+}
+
+.barLeftContainer .languages {
+  color: var(--green);
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.barLeftContainer .languages li {
+  display: inline;
+  text-transform: uppercase;
+  margin: 0 .15rem;
+  font-size: .8;
+}
+
+@media (max-width: 769px) {
+  .barLeftContainer .languages li {
+    font-size: 1rem;
+  }
+}
+
+.barLeftContainer .homeButton {
+  position: absolute;
+  bottom: 0rem;
+  left: 0rem;
+  width: 60vh;
+  height: 6.5vw;
+  bottom: -6.5vw;
+  padding-left: 1.5rem;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 769px) {
+  .barLeftContainer .homeButton {
+    width: 70vh;
+    height: 20vw;
+    bottom: -20vw;
+  }
+}
+
+.barLeftContainer .homeButton img {
+  height: 2rem;
+  width: auto;
+}
+/*# sourceMappingURL=styles.module.css.map */

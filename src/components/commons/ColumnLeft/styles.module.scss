@@ -1,0 +1,41 @@
+.leftContainer{
+    position: absolute;
+    top: 0;
+    width: 31vw;
+    left: 6.5vw;
+    @media (max-width: 769px){
+      left: 20vw;
+      width: calc(100% + 1rem);
+    }
+    .sectionTitle{
+      position: relative;
+      width: 100%;
+      border-bottom: 2px solid var(--black);
+      font-size: 1.33rem;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      font-size: 2.5rem;
+      background-color: var(--green);
+      .sectionTitleCircle{
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        height: 1.25rem;
+        width: 1.25rem;
+        border: 1px solid var(--black);
+        border-radius: 1rem;
+      }
+      .sectionTitleCircle.black{
+        background-color: var(--black);
+      }
+    }
+    .sectionContent{
+      width: calc(100% + 16px);
+      height: calc(100vh - 5.5rem);
+      overflow-y: scroll;
+      @media (max-width: 769px){
+        height: calc(100vh - 1rem);
+     }
+    }
+}

@@ -1,14 +1,15 @@
 .menuItem{
     font-size: 2.25rem;
     border-bottom: 1px dashed var(--black);
-    a{
-        padding: 1rem 1.5rem;
-        display: flex;
-    }
+    padding: 1rem 1.5rem;
+    display: flex;
     .edicaoTitle{
-        font-size: 2rem;
-        margin-left: 1.5rem;
-        margin-top: .15rem;
+        font-size: 1.5rem;
+        margin-left: 1.2rem;
+        width: 75%;
+        margin-top: .65rem;
+        text-transform: uppercase;
+        background-color: transparent;
     }
     &:hover{
         background-color: var(--hover-background);
@@ -17,11 +18,9 @@
 
 .destaqueItem{
     padding: 1.5rem;
-    display: block;
     border-bottom: 1px solid var(--black);
-    &:last-of-type{
-        border-bottom: none;
-    }
+    z-index: 0;
+    display: block;
     .destaqueDate{
         font-size: 1.25rem;
     }
@@ -30,12 +29,11 @@
         font-size: 2rem
     }
     .destaqueImage{
-        margin-top: 1rem;
-        margin-bottom: -3rem;
+        margin-top: 1.5rem;
         img{
             width: 40%;
             height: auto;
-            margin-left: 30%;
+            margin-left: 25%;
         }
     }
     &:hover{
@@ -43,8 +41,10 @@
     }
 }
 
+
+
 .destaqueContent{
-    padding: 1rem 1.5rem;
+    padding: 1.5rem;
     .destaqueDate{
         font-size: 1.25rem;
     }
@@ -53,11 +53,18 @@
         font-size: 2rem
     }
     .destaqueImage{
-        margin-top: 1rem;
-        margin-bottom: -3rem;
+        margin-top: 1.5rem;
         img{
-            width: 70%;
+            width: 60%;
             height: auto;
+            margin-left: 20%;
+        }
+    }
+    .destaqueText{
+        font-family: 'Pathos';
+        padding-top: 1.5rem;
+        @media (max-width: 769px){     
+            font-size: 1.15rem;
         }
     }
 }

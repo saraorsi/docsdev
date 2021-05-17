@@ -7,7 +7,9 @@
     height: 100%;
     color: var(--green);
     letter-spacing: .02em;
-    
+    @media (max-width: 769px){
+        display: none;
+    }
     .links{
         position: absolute;
         left:0;

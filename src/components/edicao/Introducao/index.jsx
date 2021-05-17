@@ -1,12 +1,12 @@
 import { useContext } from "react"
-import { EdicoesContext } from "../../../contexts/EdicoesContext"
+import { DataContext } from "../../../contexts/dataContext";
 import styles from './styles.module.scss'
 
 export function Introducao() {
-    const edicao = useContext(EdicoesContext);
+    const {edicao} = useContext(DataContext);
     return(
         <div className={styles.introducaoContainer}>
-            <div className={styles.introducaoSinopse} dangerouslySetInnerHTML={{ __html: edicao.acf.sinopse }}></div>
+            <div className={styles.introducaoSinopse} dangerouslySetInnerHTML={{ __html: edicao?.sinopse }}></div>
         </div>
     )
 }

@@ -1,0 +1,12 @@
+.leiturasItem{
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px dashed var(--black);
+    font-size: 2rem;
+    a{
+        display: block;
+    }
+    &:hover{
+        background-color: var(--black);
+        color: var(--green)
+    }
+}

@@ -1,5 +1,8 @@
 import styles from './styles.module.scss';
+import useTranslation from "next-translate/useTranslation";
+
 export function BarRight() {
+    const {t} = useTranslation();
     return(
         <div className={styles.barRightConainer}>
             <div className={styles.links}>
@@ -11,7 +14,7 @@ export function BarRight() {
                 </div>
             </div>
             <div className={styles.support}>
-            O DOC'S KINGDOM é apoiado pelo Instituto do Cinema Português e pelo Governo de Portugal
+            {t("common:ica")}
             </div>
         </div>
     )

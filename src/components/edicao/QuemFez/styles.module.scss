@@ -1,6 +1,5 @@
 .quemFezItem{
-    padding: 1.5rem;
-    padding-right: 6rem;
+    padding: 1.5rem 1.75rem;
     border-bottom: 1px dashed var(--black);
     .quemFezFuncao{
         font-size: 1.75rem;
@@ -8,5 +7,8 @@
     }
     .quemFezEquipa{
         font-family: 'Pathos', sans-serif;
+        @media (max-width: 769px){     
+            font-size: 1.15rem;
+        }
     }
 }

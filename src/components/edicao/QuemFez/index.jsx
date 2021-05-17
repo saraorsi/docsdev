@@ -1,16 +1,17 @@
 import { useContext } from "react";
-import { EdicoesContext } from "../../../contexts/EdicoesContext";
+import { DataContext } from "../../../contexts/dataContext";
+
 import styles from './styles.module.scss';
 
 export function QuemFez() {
-    const edicao = useContext(EdicoesContext);
-    const quemFez = edicao?.acf?.quem_fez;
+    const {edicao} = useContext(DataContext);
+
 
     return(
         <div>
         {
-            quemFez && quemFez.map( item => (
-                <div className={styles.quemFezItem}>
+            edicao?.quemFez && edicao.quemFez.map( (item, index) => (
+                <div className={styles.quemFezItem} key={index}>
                     <div className={styles.quemFezFuncao}>{item.funcao}</div>
                     <div className={styles.quemFezEquipa}>{item.equipa}</div>
                 </div>

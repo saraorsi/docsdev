@@ -1,23 +1,30 @@
-import useSWR from 'swr';
+import { useContext } from "react";
+import { DataContext } from "../../../contexts/dataContext";
+
+import styles from './styles.module.scss';
 
 export function Leituras() {
-    const fetcher =
-        (...args) => fetch(...args).then((res) => res.json())
-    const { API_URL } = process.env;
-    const url = `${API_URL}/cpt_leituras?per_page=100`
-    const { data, error } = useSWR(url, fetcher)
-    if (error) return <div>failed to load</div>
-    if (!data) return (<div>
-        <div>Loading...</div>
-    </div>)
-    const leituras = data;
-    leituras.sort((a, b) => (a.title.rendered > b.title.rendered ? 1 : -1))
+    const {leituras, keyword} = useContext(DataContext);
+
+ 
+
+
+    const filterLeituras = leituras && leituras.filter(leitura =>
+    leitura.titulo.toLowerCase().includes(keyword))
+
+    console.log(filterLeituras)
 
     return (
         <>
-       
-        {leituras.map( leitura => <div>{leitura.title.rendered}</div>)}
-             
+        {filterLeituras && filterLeituras.map(leitura => {
+            return(
+                <div className={styles.leiturasItem} key={leitura.id}>
+                    <a href={leitura.pdf} target="_blank">
+                        {leitura.titulo}
+                    </a>
+                </div>
+            )
+        })}
         </>
     )
 }

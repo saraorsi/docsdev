@@ -1,5 +1,5 @@
 .sessionDay{
-    padding: 1.25rem 1.5rem;
+    padding: 1.5rem 1.75rem;
     border-bottom: 1px dashed var(--black);
     font-size: 1.5rem;
     display: block;
@@ -7,7 +7,7 @@
 
 .sessionContainer{
     border-bottom: 1px dashed var(--black);
-    padding: 1.5rem;
+    padding: 1.5rem 1.75rem;
     .sessionInfo{
         font-size: 1.25rem;
         text-align: right;
@@ -26,6 +26,9 @@
         .filmText{
             font-family: 'Pathos';
             padding-top: 1.25rem;
+            @media (max-width: 769px){     
+                font-size: 1.15rem;
+            }
         }
     }
     .debates{

@@ -1,13 +1,15 @@
 .barCentralContainer {
     left: 37.5vw;
     position: absolute;
-    width: 5.5vw;
+    width: 5vw;
     height: 100vh;
     border-left: 2px solid var(--black);
     border-right: 2px solid var(--black);
     background-color: var(--green);
     z-index: 50;
-
+    @media (max-width: 769px){
+        display: none;
+    }
     .barCentralCircle {
         margin: 1.5rem auto;
         height: 1.25rem;
@@ -19,8 +21,8 @@
 
     .barCentralText {
         position: absolute;
-        bottom: -5.5vw;
-        height: 5.5vw;
+        bottom: -5vw;
+        height: 5vw;
         left: 0rem;
         width: 100vh;
         padding-left: 1.5vw;

@@ -1,16 +1,22 @@
 import { useContext, useState } from "react";
-import { EdicoesContext } from "../../../contexts/EdicoesContext";
-import Moment from 'react-moment';
-import moment from 'moment';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt'
 
 import styles from './styles.module.scss';
+import { DataContext } from "../../../contexts/dataContext";
+
 
 export function Programa() {
 
-    moment.locale('pt-pt');
-    const edicao = useContext(EdicoesContext);
-    const sessoes = edicao && edicao?.acf?.sessao_repetidor;
+ 
+    const {edicao} = useContext(DataContext);
+
+
+
+    const sessoes = edicao && edicao.sessoes;
     let diaActual, diaNovo;
+
+    
     return (
         <>
             {sessoes && sessoes.map(({ dia, turno, filmes, debates }, i) => {
@@ -24,7 +30,9 @@ export function Programa() {
                 return (
                     <div key={i}>
                         {diaNovo &&
-                            <Moment className={styles.sessionDay} format="D MMMM, dddd">{dia}</Moment>
+                        <div className={styles.sessionDay}>
+                            {format(parseISO(dia), 'd MMMM, EEEE', { locale: pt })}
+                        </div>
                         }
                         <div className={styles.sessionContainer}>
                         <div className={styles.sessionInfo}>Sessão #{i+1}, <span>{turno}</span></div>
@@ -36,6 +44,7 @@ export function Programa() {
                              }
                             return (
                                 <div key={filme.filme_titulo} className={styles.filmContainer}>
+                                    <a href={`#${filme.filme_titulo}`}></a>
                                     <div className="accordionButton" onClick={toggleAccordion}>
                                         <div className={styles.filmTitle}>{filme.filme_titulo}</div>
                                         {filme.filme_ano && filme.filme_duracao ?

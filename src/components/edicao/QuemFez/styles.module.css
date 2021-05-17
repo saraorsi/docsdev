@@ -1,0 +1,20 @@
+.quemFezItem {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px dashed var(--black);
+}
+
+.quemFezItem .quemFezFuncao {
+  font-size: 1.75rem;
+  margin-bottom: .75rem;
+}
+
+.quemFezItem .quemFezEquipa {
+  font-family: 'Pathos', sans-serif;
+}
+
+@media (max-width: 769px) {
+  .quemFezItem .quemFezEquipa {
+    font-size: 1.15rem;
+  }
+}
+/*# sourceMappingURL=styles.module.css.map */

@@ -1,5 +1,5 @@
 .debateItem{
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.75rem;
     border-bottom: 1px dashed var(--black);
     .debateTitle{
         font-size: 2rem;
@@ -11,5 +11,8 @@
         font-family: 'Pathos';
         padding-top: 1.25rem;
         padding-bottom: .5rem;
+        @media (max-width: 769px){     
+            font-size: 1.15rem;
+        }
     }
 }

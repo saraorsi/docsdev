@@ -1,74 +1,81 @@
-
 import Link from 'next/link'
-import { BarCentral } from '../components/commons/BarCentral';
-import Moment from 'react-moment';
 
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt-BR'
 import styles from './Home.module.scss';
+
+import { HomeLayout } from '../layouts/HomeLayout'
+
+import { api } from '../services/api';
+import { useContext, useEffect } from 'react';
+import { DataContext } from '../contexts/dataContext';
 
 export default function Home({ edicoes, destaques }) {
 
-  edicoes.sort((a, b) => (a.acf.ano > b.acf.ano ? -1 : 1))
+  const { setEdicoes } = useContext(DataContext);
+  useEffect(() => { setEdicoes(edicoes) },
+    [edicoes])
+
   return (
-    <main>
-      <section className="leftContainer">
-        <div className="sectionTitle">
-          <div>edições</div>
-          <div className="sectionTitleCircle"></div>
-        </div>
-        <div className="sectionContent">
-            {edicoes && edicoes.map(edicao => {
-              return (
-                <div className={styles.menuItem} key={edicao.id}>
-                  <Link href={`/edicao/${edicao.slug}`}>
-                    <a>
-                        <div>{edicao.acf.ano}</div>
-                        <div className={styles.edicaoTitle} dangerouslySetInnerHTML={{ __html: edicao.title.rendered }}></div>
-                      </a>
-                  </Link>
+    <>
+      {destaques && destaques.map(destaque => {
+        return (
+          destaque.link ? (
+            <a key={destaque?.id} className={styles.destaqueItem} href={destaque.link} target="_blank">
+              <div className={styles.destaqueDate}>
+                {format(parseISO(destaque.data), 'd MMMM Y', { locale: pt })}
+              </div>
+              <div className={styles.destaqueTitle} dangerouslySetInnerHTML={{ __html: destaque?.titulo }}></div>
+              {destaque.thumbnail &&
+                <div className={styles.destaqueImage}>
+                  <img src={destaque.thumbnail} alt={destaque.titulo} />
                 </div>
-              )
-            })
-            }
-        </div>
-      </section>
-      <BarCentral />
-      <section className="rightContainer">
-        <div className="sectionTitle">
-        <div>destaques</div>
-        <div className="sectionTitleCircle black"></div>
-        </div>  
-        <div className="sectionContent">
-          {destaques && destaques.map(destaque => {
-            return (
-                <Link key={destaque.id} href={`/${destaque?.slug}`}>
-                  <a className={styles.destaqueItem}>
-                    <Moment className={styles.destaqueDate} format="DD/MM/YYYY">
-                      {destaque.date}
-                    </Moment>
-                    <div className={styles.destaqueTitle} dangerouslySetInnerHTML={{ __html: destaque.title.rendered }}></div>
-                    { destaque?.featured_media_src_url &&
-                      <div className={styles.destaqueImage}>
-                          <img src={destaque?.featured_media_src_url} alt={destaque.title.rendered} />
-                      </div>
-                  }
-                  </a>
-                </Link>
-            )
-          })}
-        </div>
-      </section>
-    </main>
+              }
+            </a>
+
+          ) : (
+            <Link key={destaque.id} href={`/destaque/${destaque.slug}`}>
+              <a className={styles.destaqueItem}>
+                <div className={styles.destaqueDate}>
+                  {format(parseISO(destaque.data), 'd MMMM Y', { locale: pt })}
+                </div>
+                <div className={styles.destaqueTitle} dangerouslySetInnerHTML={{ __html: destaque.titulo }}></div>
+                {destaque.thumbnail &&
+                  <div className={styles.destaqueImage}>
+                    <img src={destaque.thumbnail} alt={destaque.titulo} />
+                  </div>
+                }
+              </a>
+            </Link>
+          )
+        )
+      })
+      }
+    </>
   )
 }
 
-export async function getStaticProps() {
-  const { API_URL } = process.env;
-  const edicoesApi = await fetch(`${API_URL}/cpt_edicoes?per_page=20`);
-  const dataEdicoes = await edicoesApi.json();
-  const edicoes = await dataEdicoes;
-  const destaquesApi = await fetch(`${API_URL}/cpt_destaques?per_page=20`);
-  const dataDestaques = await destaquesApi.json();
-  const destaques = await dataDestaques;
+Home.Layout = HomeLayout;
+
+export async function getStaticProps({ locale }) {
+
+
+  const edicoesData = await api.get('edicoes', {
+    params: {
+      lang: locale == 'pt' ? '' : ''
+    }
+  })
+  const edicoes = edicoesData.data.sort((a, b) => (a.ano > b.ano ? -1 : 1));
+
+
+  const destaquesData = await api.get('destaques', {
+    params: {
+      lang: locale == 'pt' ? '' : ''
+    }
+  })
+  const destaques = destaquesData.data;
+
+
   return {
     props: {
       edicoes,

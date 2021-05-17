@@ -1,43 +1,42 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import useSWR from "swr";
-import { EdicoesContext } from "../../../contexts/EdicoesContext";
+import { DataContext } from "../../../contexts/dataContext";
+
+
 
 import styles from './styles.module.scss';
 
 export function Realizador() {
-    const edicao = useContext(EdicoesContext);
-    const router = useRouter();
-    const sessoes = edicao.acf.sessao_repetidor;
-    const realizadoresFilmes = [];
+    const {edicao, realizador} = useContext(DataContext);
 
-    sessoes.map(sessao =>
+    console.log(realizador)
+    const router = useRouter();
+
+    const realizadorFilmes = [];
+
+    edicao.sessoes && edicao.sessoes.map(sessao =>
         sessao.filmes && sessao.filmes.map(filme =>
             filme.realizadores && filme.realizadores.map(realizador => {
-                if (realizador.post_name === router.query.separador) {
-                    realizadoresFilmes.push(filme)
+                if (realizador.post_name === router.query.realizador) {
+                    realizadorFilmes.push(filme)
                 }
             })
         ));
 
 
-    const fetcher =
-        (...args) => fetch(...args).then((res) => res.json())
-    const { API_URL } = process.env;
-    const url = `${API_URL}/cpt_realizadores?slug=${router.query.separador}`
-    const { data, error } = useSWR(url, fetcher)
-    if (error) return <div>failed to load</div>
-    if (!data) return <div>Loading...</div>
-    const realizador = data[0];
-
+        realizadorFilmes.sort((a, b) => (a.filme_titulo > b.filme_titulo ? 1 : -1));
     return (
+
+        
         <div className={styles.realizadorContainer}>
-            <div className={styles.realizadorTitle} dangerouslySetInnerHTML={{ __html: realizador?.title?.rendered }}></div>
-            <div className={styles.realizadorText}  dangerouslySetInnerHTML={{ __html: realizador?.acf?.biografia }}></div>
-            {realizadoresFilmes && <div className={styles.realizadorFilms}> 
-                {realizadoresFilmes.map(filme => {
+            <div className={styles.realizadorTitle} dangerouslySetInnerHTML={{ __html: realizador?.nome }}></div>
+            <div className={styles.realizadorText}  dangerouslySetInnerHTML={{ __html: realizador?.biografia }}></div>
+            {realizadorFilmes && <div className={styles.realizadorFilms}> 
+                {realizadorFilmes.map(filme => {
                     return (
-                        <div className={styles.realizadorFilm} key={filme.filme_titulo}>
+                        <Link href={`/edicao/${router.query.slug}/programa`} key={filme.filme_titulo}>
+                            <a  className={styles.realizadorFilm}>
                             <span>{filme.filme_titulo}</span>
                             {filme.filme_ano && filme.filme_duracao ?
                                             <>, {filme.filme_ano}, {filme.filme_duracao} min</>
@@ -47,10 +46,12 @@ export function Realizador() {
                                                 <>, {filme.filme_duracao} min </>
                                                     : null
                                         }
-                        </div>
+                            </a>
+                        </Link>
                     )
                 })} 
             </div>}
         </div>
+
     )
 }

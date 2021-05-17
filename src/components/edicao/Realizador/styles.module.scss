@@ -1,16 +1,22 @@
 .realizadorContainer{
-    padding: 1.5rem;
+    padding: 1.5rem 1.75rem;
     .realizadorTitle{
         font-size: 2rem;
         margin-bottom: 1rem;
     }
     .realizadorText{
         font-family: 'Pathos', sans-serif;
+        @media (max-width: 769px){     
+            font-size: 1.15rem;
+        }
     }
     .realizadorFilms{
         margin-top: 2rem;
         font-size: 1.25rem;
         line-height: 1.5em;
+        a{
+            display: block;
+        }
         span{
             border-bottom: 1px solid var(--black);
         }

@@ -6,13 +6,32 @@
     height: 100%;
     color: var(--green);
     letter-spacing: .02em;
+    @media (max-width: 769px){
+        font-size: 15px;
+        width: 20vw;
+      }
     .searchButton{
-        margin-top: 1.5rem;
+        margin-top: 1rem;
         text-align: center;
         img{
-            width: 1.5rem;
+            width: 2rem;
             height: auto;
         }
+    }
+    .languages{
+        color: var(--green);
+        margin-top: 1.5rem;
+        text-align: center;
+        li{
+            display: inline;
+            text-transform: uppercase;
+            margin: 0 .15rem;
+            font-size: .8;
+            @media (max-width: 769px){
+                font-size: 1rem;
+            }
+        }
+
     }
     .homeButton{
         position: absolute;
@@ -36,5 +55,16 @@
 
         display: flex;
         align-items: center;
+
+        @media (max-width: 769px){
+            width: 70vh;
+            height: 20vw;
+            bottom: -20vw;
+          }
+
+        img{
+            height: 2rem;
+            width: auto;
+        }
     }
 }
